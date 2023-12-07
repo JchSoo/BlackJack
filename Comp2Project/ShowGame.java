@@ -38,7 +38,7 @@ public class ShowGame extends JFrame implements ActionListener {
     //컴포넌트 배치
     void setComponent() {
         setLayout(null);
-        setBounds(200, 40, 800, 800);
+        setBounds(200, 40, 820, 760);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
@@ -227,7 +227,6 @@ public class ShowGame extends JFrame implements ActionListener {
                 else {dealerarea.append(card.printCard() + "\n");}
 
                 cnt++;
-                System.out.println(cnt);
             }
             draw_button.setEnabled(false);
             hit_button.setEnabled(true);
