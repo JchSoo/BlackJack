@@ -1,2 +1,1 @@
-# BlackJack
-BlackJack
+# 컴퓨터프로그래밍2 텀프로젝트 레포지트리 입니다
