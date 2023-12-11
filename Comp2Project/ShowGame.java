@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 import java.time.LocalDate;
+import java.util.stream.Stream;
 
 public class ShowGame extends JFrame implements ActionListener {
     JPanel contentPane, userpanel, dealerpanel;
@@ -187,20 +188,23 @@ public class ShowGame extends JFrame implements ActionListener {
 
     // history.txt에 전적 기록
     void saveResult() {
-
         LocalDate now = LocalDate.now();
-
         file = new File(RESULT_FILE_PATH);
         String resultMessage = result.getText();
+
         try (PrintStream printStream = new PrintStream(new FileOutputStream(file, true))) {
             System.setOut(printStream);
-            System.out.println(resultMessage);
-            System.out.println();
-            player.displayHand();
-            dealer.displayHand();
+
+            // 사용자와 딜러의 카드 출력
+            Stream.concat(player.hand.stream(), dealer.hand.stream())
+                    .map(Card::printCard)
+                    .forEach(card -> System.out.println(card));
+
+            // 현재 날짜 및 구분선 출력
             System.out.println(now);
             System.out.println("=============================");
             System.out.println("=============================");
+
         } catch (IOException ie) {
             ie.printStackTrace();
         }
